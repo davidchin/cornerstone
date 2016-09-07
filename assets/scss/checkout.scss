@@ -3,6 +3,8 @@
 // =============================================================================
 
 .checkoutHeader {
+    background-image: url(stencilImage('uco_custom_background_image', 'uco_custom_background_image_size'));
+    background-size: cover;
     // Desktop Only
     @include breakpoint("medium") {
         text-align: stencilString("uco_logo_position");
