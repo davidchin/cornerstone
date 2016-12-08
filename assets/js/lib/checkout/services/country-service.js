@@ -1,4 +1,4 @@
-function countryServiceFactory(
+export default function countryServiceFactory(
     BC_SEED_DATA
 ) {
     'ngInject';
@@ -18,6 +18,3 @@ function countryServiceFactory(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('countryService', countryServiceFactory);

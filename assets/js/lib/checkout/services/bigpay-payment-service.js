@@ -1,4 +1,4 @@
-function buildBigpayPaymentService(
+export default function buildBigpayPaymentService(
     $q,
     addressService,
     bigpayClientService,
@@ -38,7 +38,7 @@ function buildBigpayPaymentService(
             order,
             payment,
             paymentMethod,
-            quoteMeta,
+            quoteMeta: _.merge({}, quoteMeta, { request: { geoCountryCode: 'AU' } }),
             shippingAddress,
             source,
             store,
@@ -86,6 +86,3 @@ function buildBigpayPaymentService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('bigpayPaymentService', buildBigpayPaymentService);

@@ -1,4 +1,4 @@
-function buildValidationService() {
+export default function buildValidationService() {
     'ngInject';
 
     const service = {
@@ -13,6 +13,3 @@ function buildValidationService() {
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('validationService', buildValidationService);

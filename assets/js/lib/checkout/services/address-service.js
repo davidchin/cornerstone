@@ -1,5 +1,4 @@
-function buildAddressService(
-    _,
+export default function buildAddressService(
     $http,
     $q,
     API,
@@ -182,6 +181,3 @@ function buildAddressService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('addressService', buildAddressService);

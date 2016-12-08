@@ -1,5 +1,4 @@
-function buildShippingMethodService(
-    _,
+export default function buildShippingMethodService(
     $http,
     $q,
     API,
@@ -11,6 +10,7 @@ function buildShippingMethodService(
 
     const service = {
         fetchShippingOptions,
+        getSelectedShippingOption,
         getSelectedShippingOptionId,
         getShippingOptionById,
         getShippingOption,
@@ -26,6 +26,12 @@ function buildShippingMethodService(
         return $http.get(API.SHIPPING_OPTIONS_URL)
             .then(resp => resp.data.data.shippingOptions)
             .then(service.setShippingOptions);
+    }
+
+    function getSelectedShippingOption(addressId) {
+        const shippingOptionId = service.getSelectedShippingOptionId();
+
+        return service.getShippingOptionById(addressId, shippingOptionId);
     }
 
     function getSelectedShippingOptionId() {
@@ -80,6 +86,3 @@ function buildShippingMethodService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('shippingMethodService', buildShippingMethodService);

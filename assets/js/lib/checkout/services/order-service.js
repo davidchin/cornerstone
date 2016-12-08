@@ -1,7 +1,5 @@
-function buildOrderService(
-    _,
+export default function buildOrderService(
     API,
-    gettextCatalog,
     $http,
     $q,
     bigpayPaymentService,
@@ -67,7 +65,7 @@ function buildOrderService(
         let thirdPartyErrorMessage;
 
         try {
-            const providerErrorMessagePrefix = gettextCatalog.getString('Response from payment provider:');
+            const providerErrorMessagePrefix = 'Response from payment provider:';
 
             errorData = err.data;
             errorType = _.last(errorData.type.split('/'));
@@ -262,6 +260,3 @@ function buildOrderService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('orderService', buildOrderService);

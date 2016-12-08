@@ -1,5 +1,4 @@
-function buildRedeemableService(
-    _,
+export default function buildRedeemableService(
     $http,
     API,
     cartService
@@ -33,6 +32,3 @@ function buildRedeemableService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('redeemableService', buildRedeemableService);

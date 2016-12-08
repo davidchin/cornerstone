@@ -1,5 +1,4 @@
-function buildCustomerService(
-    _,
+export default function buildCustomerService(
     $http,
     $q,
     API,
@@ -282,6 +281,3 @@ function buildCustomerService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('customerService', buildCustomerService);

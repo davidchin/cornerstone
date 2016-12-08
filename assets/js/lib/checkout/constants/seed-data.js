@@ -1,4 +1,4 @@
-const BC_SEED_DATA = {
+export const BC_SEED_DATA = {
     "shipping-countries": [{
         "code": "AF",
         "name": "Afghanistan"
@@ -1496,6 +1496,3 @@ const BC_SEED_DATA = {
         "AR": ["Ciudad Aut\u00f3noma de Buenos Aires", "Buenos Aires", "Catamarca", "Chaco", "Chubut", "C\u00f3rdoba", "Corrientes", "Entre R\u00edos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuqu\u00e9n", "R\u00edo Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucum\u00e1n"]
     }
 };
-
-angular.module('bigcommerce-checkout')
-    .constant('BC_SEED_DATA', BC_SEED_DATA);

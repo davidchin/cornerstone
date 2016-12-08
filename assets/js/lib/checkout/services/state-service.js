@@ -1,4 +1,4 @@
-function buildStateService(
+export default function buildStateService(
     BC_SEED_DATA
 ) {
     'ngInject';
@@ -44,6 +44,3 @@ function buildStateService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('stateService', buildStateService);

@@ -1,12 +1,12 @@
-function buildPaymentService(
+export default function buildPaymentService(
     $http,
-    $interpolate,
     $q,
-    $state,
     braintreePaypalService,
     PAYMENT_PROVIDER,
     paymentMethodService
 ) {
+    'ngInject';
+
     const gatewayState = 'ng-checkout.checkout.payment.{{ gatewayId }}-{{ providerId }}';
     const paymentState = 'ng-checkout.checkout.payment.{{ providerId }}';
     const service = {
@@ -14,7 +14,6 @@ function buildPaymentService(
         getPaymentProvider,
         isSubmitDisabled,
         isSubmitting,
-        navigate,
         preparePayment,
         resetPaymentData,
         resetSubmit,
@@ -32,7 +31,12 @@ function buildPaymentService(
 
     function preparePayment() {
         if (paymentProviderId === PAYMENT_PROVIDER.BRAINTREE_PAYPAL) {
-            return braintreePaypalService.initializeCheckout();
+            return braintreePaypalService.initializeCheckout()
+                .then(response => {
+                    braintreePaypalService.teardownSdk();
+
+                    return response;
+                });
         }
 
         return $q.when();
@@ -56,23 +60,6 @@ function buildPaymentService(
 
     function isSubmitting() {
         return _isSubmitting;
-    }
-
-    function navigate(provider) {
-        const params = { providerId: provider.id };
-
-        if (provider.gateway) {
-            const stateName = $interpolate(gatewayState)({
-                gatewayId: provider.gateway,
-                providerId: provider.id,
-            });
-
-            return $state.go(stateName, params);
-        }
-
-        const stateName = $interpolate(paymentState)({ providerId: provider.id });
-
-        return $state.go(stateName, params);
     }
 
     function resetPaymentData() {
@@ -114,6 +101,3 @@ function buildPaymentService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('paymentService', buildPaymentService);

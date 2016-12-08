@@ -1,11 +1,12 @@
-function buildBigpayClientService(
+import { createClient } from 'bigpay-client';
+
+export default function buildBigpayClientService(
     $window,
     configService
 ) {
+    'ngInject';
+
     const host = configService.getBigpayBaseUrl();
 
-    return $window.bigpayClient.createClient({ host });
+    return createClient({ host });
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('bigpayClientService', buildBigpayClientService);

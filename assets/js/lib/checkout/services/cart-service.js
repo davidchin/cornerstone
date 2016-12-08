@@ -1,5 +1,4 @@
-function buildCartService(
-    _,
+export default function buildCartService(
     $http,
     $q,
     API,
@@ -127,6 +126,3 @@ function buildCartService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('cartService', buildCartService);

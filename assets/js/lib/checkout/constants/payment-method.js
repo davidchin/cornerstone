@@ -1,4 +1,4 @@
-const BRAINTREE_PAYPAL = {
+export const BRAINTREE_PAYPAL = {
     CONTAINER_ID: 'paypalContainer',
     INTEGRATION_TYPE: {
         CUSTOM: 'custom',
@@ -7,7 +7,7 @@ const BRAINTREE_PAYPAL = {
     SDK_URL: '//js.braintreegateway.com/js/braintree-2.30.0.min.js',
 };
 
-const PAYMENT_PROVIDER = {
+export const PAYMENT_PROVIDER = {
     ADYEN: 'adyen',
     AMAZON: 'amazon',
     AUTHORIZENET: 'authorizenet',
@@ -28,7 +28,3 @@ const PAYMENT_PROVIDER = {
     TESTGATEWAY: 'testgateway',
     USAEPAY: 'usaepay',
 };
-
-angular.module('bigcommerce-checkout')
-    .constant('BRAINTREE_PAYPAL', BRAINTREE_PAYPAL)
-    .constant('PAYMENT_PROVIDER', PAYMENT_PROVIDER);

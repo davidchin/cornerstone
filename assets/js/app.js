@@ -8,6 +8,7 @@ import blog from './theme/blog';
 import brand from './theme/brand';
 import cart from './theme/cart';
 import category from './theme/category';
+import checkout from './theme/checkout';
 import contactUs from './theme/contact-us';
 import compare from './theme/compare';
 import errors from './theme/errors';
@@ -49,6 +50,7 @@ const PageClasses = {
         'pages/brands': brand,
         'pages/cart': cart,
         'pages/category': category,
+        'pages/checkout': checkout,
         'pages/compare': compare,
         'pages/contact-us': contactUs,
         'pages/errors': errors,

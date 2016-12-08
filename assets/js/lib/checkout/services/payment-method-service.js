@@ -1,6 +1,6 @@
-function buildPaymentMethodService(
-    _,
+export default function buildPaymentMethodService(
     $http,
+    $q,
     API,
     braintreePaypalService,
     PAYMENT_PROVIDER,
@@ -20,12 +20,14 @@ function buildPaymentMethodService(
         setPayments
     };
 
-    function configurePayment(providerId) {
+    function configurePayment(providerId, config = {}) {
         const provider = service.getPayment(providerId);
 
         if (providerId === PAYMENT_PROVIDER.BRAINTREE_PAYPAL) {
-            braintreePaypalService.setupSdk(provider.clientToken);
+            return $q.when(braintreePaypalService.setupSdk(provider.clientToken, config));
         }
+
+        return $q.when();
     }
 
     function fetchPayments() {
@@ -97,6 +99,3 @@ function buildPaymentMethodService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('paymentMethodService', buildPaymentMethodService);

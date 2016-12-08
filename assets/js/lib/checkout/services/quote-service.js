@@ -1,5 +1,4 @@
-function buildQuoteService(
-    _,
+export default function buildQuoteService(
     $http,
     API
 ) {
@@ -68,6 +67,3 @@ function buildQuoteService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('quoteService', buildQuoteService);

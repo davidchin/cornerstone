@@ -1,4 +1,4 @@
-function buildCurrencyService(
+export default function buildCurrencyService(
     BC_APP_CONFIG
 ) {
     'ngInject';
@@ -18,6 +18,3 @@ function buildCurrencyService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('currencyService', buildCurrencyService);

@@ -1,4 +1,4 @@
-const ADDRESS_FIELDS = [
+export const ADDRESS_FIELDS = [
     'addressLine1',
     'addressLine2',
     'city',
@@ -14,7 +14,7 @@ const ADDRESS_FIELDS = [
     'type',
 ];
 
-const ADDRESS_REQUIRED_FIELDS = [
+export const ADDRESS_REQUIRED_FIELDS = [
     'addressLine1',
     'city',
     'country',
@@ -25,12 +25,7 @@ const ADDRESS_REQUIRED_FIELDS = [
     'postCode',
 ];
 
-const ADDRESS_TYPES = {
+export const ADDRESS_TYPES = {
     BILLING: 'billing',
     SHIPPING: 'shipping',
 };
-
-angular.module('bigcommerce-checkout')
-    .constant('ADDRESS_FIELDS', ADDRESS_FIELDS)
-    .constant('ADDRESS_REQUIRED_FIELDS', ADDRESS_REQUIRED_FIELDS)
-    .constant('ADDRESS_TYPES', ADDRESS_TYPES);

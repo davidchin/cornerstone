@@ -1,4 +1,6 @@
-function buildConfigService(BC_APP_CONFIG) {
+export default function buildConfigService(
+    BC_APP_CONFIG
+) {
     'ngInject';
 
     const service = {
@@ -111,6 +113,3 @@ function buildConfigService(BC_APP_CONFIG) {
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('configService', buildConfigService);

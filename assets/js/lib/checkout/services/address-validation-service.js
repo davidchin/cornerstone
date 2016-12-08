@@ -1,11 +1,11 @@
-function buildAddressValidationService(
+export default function buildAddressValidationService(
     ADDRESS_FIELDS,
     ADDRESS_REQUIRED_FIELDS,
     stateService,
     validationService
 ) {
     'ngInject';
-    
+
     const service = {
         isFieldRequired,
         isFieldValid,
@@ -36,6 +36,3 @@ function buildAddressValidationService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('addressValidationService', buildAddressValidationService);

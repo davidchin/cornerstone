@@ -1,4 +1,4 @@
-const BC_APP_CONFIG = {
+export const BC_APP_CONFIG = {
     "bigpayBaseUrl": "https:\/\/bigpay.integration.zone",
     "cartLink": "https:\/\/store-to68wp87.bcapp.dev\/cart.php",
     "cdnPath": "https:\/\/cdn1-d.bcapp.dev\/r-head",
@@ -13,7 +13,7 @@ const BC_APP_CONFIG = {
         "realtimeShippingProviders": ["Fedex", "UPS", "USPS"],
         "remoteCheckoutProviders": []
     },
-    "clientSidePaymentProviders": ["braintree", "paypal", "usaepay", "nmi"],
+    "clientSidePaymentProviders": ["braintree", "braintreepaypal", "paypal", "usaepay", "nmi"],
     "currency": {
         "code": "USD",
         "decimal_places": "2",
@@ -48,6 +48,3 @@ const BC_APP_CONFIG = {
     "storePhoneNumber": "",
     "storeLanguage": "en_US"
 };
-
-angular.module('bigcommerce-checkout')
-    .constant('BC_APP_CONFIG', BC_APP_CONFIG);

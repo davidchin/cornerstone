@@ -1,4 +1,4 @@
-function buildBraintreePaypalService(
+export default function buildBraintreePaypalService(
     $q,
     $window,
     angularLoad,
@@ -38,12 +38,23 @@ function buildBraintreePaypalService(
     /**
      * Setup Braintree SDK
      * @param {string} clientToken
+     * @param {Object} [config={}]
      * @returns {Promise}
      */
-    function setupSdk(clientToken) {
+    function setupSdk(clientToken, config = {}) {
         return loadScript()
             .then(braintreeSdk => {
                 return $q(resolve => {
+                    config = getPayPalConfig(config);
+
+                    if (!document.getElementById(config.container)) {
+                        const containerElement = document.createElement('div');
+
+                        containerElement.id = config.container;
+
+                        document.body.appendChild(containerElement);
+                    }
+
                     braintreeSdk.setup(clientToken, BRAINTREE_PAYPAL.INTEGRATION_TYPE.CUSTOM, {
                         onPaymentMethodReceived: handleSuccess,
                         onReady: resp => {
@@ -51,7 +62,7 @@ function buildBraintreePaypalService(
 
                             resolve(braintreeSdk);
                         },
-                        paypal: getPayPalConfig(),
+                        paypal: config,
                     });
                 });
             });
@@ -72,9 +83,11 @@ function buildBraintreePaypalService(
     /**
      * Get PayPal setup config
      * @private
+     * @param {Object} config
+     * @param {string} config.container
      * @returns {Object}
      */
-    function getPayPalConfig() {
+    function getPayPalConfig({ container = BRAINTREE_PAYPAL.CONTAINER_ID }) {
         const amount = cartService.getPaidTotal(isUsingStoreCredit);
         const currency = currencyService.getCurrencyCode();
         const isUsingStoreCredit = customerService.getUsingStoreCredit();
@@ -84,7 +97,7 @@ function buildBraintreePaypalService(
             amount,
             currency,
             locale,
-            container: BRAINTREE_PAYPAL.CONTAINER_ID,
+            container,
             enableShippingAddress: true,
             headless: true,
             onAuthorizationDismissed: handleError,
@@ -140,6 +153,3 @@ function buildBraintreePaypalService(
 
     return service;
 }
-
-angular.module('bigcommerce-checkout')
-    .factory('braintreePaypalService', buildBraintreePaypalService);
