@@ -5,6 +5,11 @@
   "private": true,
   "author": "Bigcommerce",
   "license": "MIT",
+  "dependencies": {
+    "angular": "1.5.6",
+    "angular-load": "0.2.0",
+    "bigpay-client": "git@github.com:davidchin/bigpay-client-js.git#checkout_nonce_release"
+  },
   "devDependencies": {
     "@bigcommerce/citadel": "^2.11.5",
     "@bigcommerce/stencil-utils": "1.0.5",

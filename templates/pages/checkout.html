@@ -1,35 +1,42 @@
-<!doctype html>
-<html>
-<head>
-    <base href="/">
-    <meta charset="UTF-8"/>
-    <meta name="keywords" content="checkout"/>
-    <meta name="description" content="Bigcommerce checkout"/>
-    <meta name="robots" content="noindex, nofollow">
-    <meta name="viewport" content="width=device-width">
-    <link rel="SHORTCUT ICON" href="{{ FaviconUrl }}" />
-    {{{ open_sans_stylesheet }}}
-    {{{ ng_checkout_stylesheet }}}
-    {{{ stylesheet '/assets/css/optimized-checkout.css' }}}
-    {{ getFontsCollection }}
-    {{ OptimizedCheckoutWebdavCss }}
-</head>
-    <body>
+{{#partial "head"}}
+
+<base href="/">
+
+{{{ open_sans_stylesheet }}}
+{{{ ng_checkout_stylesheet }}}
+{{{ stylesheet '/assets/css/optimized-checkout.css' }}}
+{{ getFontsCollection }}
+{{ OptimizedCheckoutWebdavCss }}
+
+{{/partial}}
+
+{{#partial "page"}}
+
 <header class="checkoutHeader optimizedCheckout-header">
     <div class="checkoutHeader-content">
         <h1 class="is-srOnly" translate>Checkout</h1>
+
         <h2 class="checkoutHeader-heading">
             <a class="checkoutHeader-link" href="/">
                 {{#if HeaderImage }}
-			<img alt="{{ StoreName }}" class="checkoutHeader-logo" id="logoImage" src="{{ HeaderImage }}"/>
+                <img alt="{{ StoreName }}" class="checkoutHeader-logo" id="logoImage" src="{{ HeaderImage }}"/>
                 {{ else }}
-			<span class="header-logo-text">{{ HeaderText }}</span>
+                <span class="header-logo-text">{{ HeaderText }}</span>
                 {{/if}}
             </a>
         </h2>
     </div>
 </header>
-     {{{ checkout_content }}}
-    </body>
-</html>
 
+<!--
+{{{ checkout_content }}}
+-->
+
+<script src="{{cdn '/assets/js/bundle.js'}}"></script>
+<script>
+    window.stencilBootstrap("{{template_file}}", {{jsContext}}).load();
+</script>
+
+{{/partial}}
+
+{{> layout/empty}}
