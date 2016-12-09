@@ -264,7 +264,9 @@ export default function buildCheckout(
     }
 
     function fetchShippingMethods() {
-        return shippingMethodService.fetchShippingOptions();
+        let test = shippingMethodService.fetchShippingOptions();
+        debugger;
+        return test;
     }
 
     function getShippingMethod() {
