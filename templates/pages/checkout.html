@@ -12,6 +12,7 @@
 
 {{#partial "page"}}
 
+<!--
 <header class="checkoutHeader optimizedCheckout-header">
     <div class="checkoutHeader-content">
         <h1 class="is-srOnly" translate>Checkout</h1>
@@ -27,10 +28,227 @@
         </h2>
     </div>
 </header>
+-->
 
 <!--
 {{{ checkout_content }}}
 -->
+
+<main>
+    <header>
+        <img src="/assets/img/logo.png" alt="Citadel Clothing Logo"/>
+    </header>
+
+    <section class="login visible section">
+        <h2>Sign in with email</h2>
+        <form method="post">
+            <fieldset>
+                <div class="field">
+                    <label class="qa-email-label" for="EmailAddress">Email address</label>
+                    <div class="input-wrapper">
+                        <input name="username" class="qa-email-textbox" id="EmailAddress" maxlength="255" type="email">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="qa-password-label" for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input class="qa-password-textbox" id="password" maxlength="50" name="password" type="password">
+                    </div>
+                </div>
+
+                <div class="submit">
+                    <input type="submit" value="Sign in" id="signin" class="btn">
+                </div>
+
+                <div class="forgotten-password">
+                    <a class="qa-forgot-password" href="">Forgot password?</a>
+                </div>
+
+            </fieldset>
+        </form>
+        <div class="submit">
+            <input id="signin" type="submit" class="btn guest" value="Continue as a guest">
+        </div>
+    </section>
+
+    <section class="email section">
+        <h2>Email Address</h2>
+        <form>
+            <fieldset>
+                <div class="field">
+                    <label class="sr-only" for="emailAddress">Email Address</label>
+                    <div class="row">
+                        <input class="emailAddress" id="emailGuest" type="email" name="email">
+                        <button class="btn" type="submit">Add my email</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+
+    <section class="shipping section">
+        <h2>Delivery Address</h2>
+        <form>
+            <fieldset>
+                <div class="field">
+                    <label for="firstNameShipping">First Name</label>
+                    <input id="firstNameShipping" name="firstName" type="text">
+                </div>
+                <div class="field">
+                    <label for="lastNameShipping">Last Name</label>
+                    <input id="lastNameShipping" name="lastName" type="text">
+                </div>
+                <div class="field">
+                    <label for="phoneShipping">Phone</label>
+                    <input id="formShipping" name="phone" type="phone">
+                </div>
+                <div class="field">
+                    <label for="address1Shipping">Address</label>
+                    <input id="address1Shipping" name="addressLine1" type="text">
+                </div>
+                <div class="field">
+                    <label for="address2Shipping">Address 2</label>
+                    <input id="address2Shipping" name="addressLine2" type="text">
+                </div>
+                <div class="field">
+                    <label for="cityShipping">City</label>
+                    <input id="cityShipping" name="city" type="text">
+                </div>
+                <div class="field">
+                    <label for="postCodeShipping">Post Code</label>
+                    <input id="postCodeShipping" name="postCode" type="text">
+                </div>
+                <div class="field">
+                    <label for="provinceShipping">State</label>
+                    <input id="provinceShipping" name="province" type="text">
+                </div>
+                <div class="field">
+                    <label for="countryShipping">Country</label>
+                    <input id="countryShipping" name="country" type="text">
+                </div>
+                <input type="hidden" name="type" value="residential" />
+            </fieldset>
+
+            <div class="submit">
+                <input type="submit" value="Deliver to this Address" id="signin" class="btn">
+            </div>
+        </form>
+    </section>
+
+    <section class="shippingMethod section">
+        <h2>Shipping Method</h2>
+        <form>
+            <fieldset>
+                <select class="methods">
+                </select>
+            </fieldset>
+        </form>
+    </section>
+
+    <section class="billing section">
+        <h2>Billing Address</h2>
+        <form>
+            <fieldset>
+                <div class="field">
+                    <label for="firstNameBilling">First Name</label>
+                    <input id="firstNameBilling" name="firstName" type="text">
+                </div>
+                <div class="field">
+                    <label for="lastNameBilling">Last Name</label>
+                    <input id="lastNameBilling" name="lastName" type="text">
+                </div>
+                <div class="field">
+                    <label for="phoneBilling">Phone</label>
+                    <input id="formBilling" name="phone" type="phone">
+                </div>
+                <div class="field">
+                    <label for="address1Billing">Address</label>
+                    <input id="address1Billing" name="addressLine1" type="text">
+                </div>
+                <div class="field">
+                    <label for="address2Billing">Address 2</label>
+                    <input id="address2Billing" name="addressLine2" type="text">
+                </div>
+                <div class="field">
+                    <label for="cityBilling">City</label>
+                    <input id="cityBilling" name="city" type="text">
+                </div>
+                <div class="field">
+                    <label for="postCodeBilling">Post Code</label>
+                    <input id="postCodeBilling" name="postCode" type="text">
+                </div>
+                <div class="field">
+                    <label for="provinceBilling">State</label>
+                    <input id="provinceBilling" name="province" type="text">
+                </div>
+                <div class="field">
+                    <label for="countryBilling">Country</label>
+                    <input id="countryBilling" name="country" type="text">
+                </div>
+                <input type="hidden" name="type" value="residential" />
+            </fieldset>
+
+
+            <div class="submit">
+                <input type="submit" value="Deliver to this Address" id="signin" class="btn">
+            </div>
+        </form>
+    </section>
+
+    <section class="paymentMethod section">
+        <h2>Payment Method</h2>
+        <form>
+            <fieldset class="">
+                <select class="methods">
+                </select>
+            </fieldset>
+        </form>
+    </section>
+
+    <section class="payment section">
+        <h2>Payment Details</h2>
+        <form>
+            <fieldset>
+                <div class="field">
+                    <label for="ccName">Name on Card</label>
+                    <input id="ccName" name="ccName" type="text">
+                </div>
+                <div class="field">
+                    <label for="ccNumber">Card Number</label>
+                    <input id="ccNumber" name="ccNumber" type="text">
+                </div>
+                <div class="row">
+                    <div class="field">
+                        <label for="ccExpiry.month">Month</label>
+                        <input id="ccExpiry.month" name="ccExpiry.month" type="text">
+                    </div>
+                    <div class="field">
+                        <label for="ccExpiry.year">Year</label>
+                        <input id="ccExpiry.year" name="ccExpiry.year" type="text">
+                    </div>
+                    <div class="field">
+                        <label for="ccCvv">CCV</label>
+                        <input id="ccCvv" name="ccCvv" type="text">
+                    </div>
+                    <input name="ccType" value="visa" type="hidden">
+                </div>
+            </fieldset>
+        </form>
+    </section>
+
+    <section class="pay section">
+        <input disabled type="submit" class="btn-placeOrder btn" value="Place Order">
+    </section>
+
+    <section class="thankyou section">
+        <h2>Thankyou for your purchase</h2>
+        <a href="/">Back to store</a>
+    </section>
+</main>
+
+
+
+
 
 <script src="{{cdn '/assets/js/bundle.js'}}"></script>
 <script>

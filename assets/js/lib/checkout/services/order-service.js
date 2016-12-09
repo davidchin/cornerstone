@@ -230,9 +230,11 @@ export default function buildOrderService(
             .then(() => {
                 const order = service.getOrder();
 
+                /*
                 if (shouldSubmitToBigpay(providerId)) {
                     return service.fetchOrder(order.orderId, order.token);
                 }
+                */
 
                 return order;
             })
