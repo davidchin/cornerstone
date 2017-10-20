@@ -3,6 +3,7 @@
 {{{ checkout.checkout_head }}}
 {{{ stylesheet '/assets/css/optimized-checkout.css' }}}
 {{ getFontsCollection }}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 
 <script type="text/javascript">
     window.language = {{{langJson 'optimized_checkout'}}};
@@ -26,9 +27,18 @@
     </div>
 </header>
 
+<!--
 {{{ checkout.checkout_content }}}
+-->
+
+<main class="body">
+    <div class="container">
+        <div id="checkout-app"></div>
+    </div>
+</main>
 
 {{{ footer.scripts }}}
+{{> components/common/footer-script }}
 
 {{/partial}}
 

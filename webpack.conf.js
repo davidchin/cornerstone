@@ -15,6 +15,11 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
+                enforce: 'pre',
+                loader: 'source-map-loader',
+            },
+            {
+                test: /\.jsx?$/,
                 include: /(assets\/js|assets\\js|stencil-utils)/,
                 use: {
                     loader: 'babel-loader',
@@ -26,6 +31,7 @@ module.exports = {
                             'dynamic-import-webpack', // Needed for dynamic imports.
                             'lodash', // Automagically tree-shakes lodash.
                             'transform-regenerator', // Transforms async and generator functions.
+                            'transform-object-rest-spread',
                         ],
                         presets: [
                             ['env', {
@@ -33,6 +39,7 @@ module.exports = {
                                 modules: false, // Don't transform modules; needed for tree-shaking.
                                 useBuiltIns: true, // Tree-shake babel-polyfill.
                             }],
+                            'react',
                         ],
                     }
                 }
@@ -56,6 +63,7 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
+            React: 'react',
             'window.jQuery': 'jquery',
         }),
         new webpack.optimize.CommonsChunkPlugin({
@@ -74,6 +82,7 @@ module.exports = {
             'slick-carousel': path.resolve(__dirname, 'node_modules/slick-carousel/slick/slick.min.js'),
             sweetalert2: path.resolve(__dirname, 'node_modules/sweetalert2/dist/sweetalert2.min.js'),
         },
+        extensions: ['.js', '.jsx', '.json'],
     },
     watch: false,
 };
