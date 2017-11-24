@@ -25,6 +25,7 @@
     "pace": "hubspot/pace#a03f1f1de62c9cea6c88b2267b8d7a83858b6cb6",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-text-mask": "^5.0.2",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^6.10.1"
   },

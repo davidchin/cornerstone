@@ -1,17 +1,18 @@
+import React from 'react';
 import { initializeSdk } from 'ng-checkout/dist/checkout-sdk';
 import Snackbar from 'material-ui/Snackbar';
-import React from 'react';
 import Billing from './billing-component';
 import Cart from './cart-component';
 import Customer from './customer-component';
 import Payment from './payment-component';
 import Shipping from './shipping-component';
+import bcAppConfig from './bc-app-config';
 
 export default class CheckoutComponent extends React.Component {
     constructor(props) {
         super(props);
 
-        this._checkoutService = initializeSdk().checkoutService;
+        this._checkoutService = initializeSdk({ app: bcAppConfig }).checkoutService;
         this.state = this._checkoutService.getState();
     }
 
@@ -20,11 +21,15 @@ export default class CheckoutComponent extends React.Component {
             this.setState(state);
         });
 
-        this._checkoutService.loadQuote();
-        this._checkoutService.loadBillingCountries();
-        this._checkoutService.loadShippingCountries();
-        this._checkoutService.loadShippingOptions();
-        this._checkoutService.loadPaymentMethods();
+        Promise.all([
+            this._checkoutService.loadQuote(),
+            this._checkoutService.loadBillingCountries(),
+            this._checkoutService.loadShippingCountries(),
+            this._checkoutService.loadShippingOptions(),
+            this._checkoutService.loadPaymentMethods(),
+        ]).then(() => {
+            this._checkoutService.finalizeOrderIfNeeded().catch(() => {});
+        });
     }
 
     componentWillUnmount() {
@@ -52,7 +57,7 @@ export default class CheckoutComponent extends React.Component {
                 />
 
                 <Shipping
-                    address={ checkout.getQuote().shippingAddress }
+                    address={ checkout.getShippingAddress() }
                     countries={ checkout.getShippingCountries() }
                     options={ checkout.getShippingOptions() }
                     selectedOptionId={ checkout.getQuote().shippingOption }
@@ -61,7 +66,7 @@ export default class CheckoutComponent extends React.Component {
                 />
 
                 <Billing
-                    address={ checkout.getQuote().billingAddress }
+                    address={ checkout.getBillingAddress() }
                     countries={ checkout.getBillingCountries() }
                     onUpdate={ (...args) => this._handleUpdateBillingAddress(...args) }
                 />
@@ -70,6 +75,8 @@ export default class CheckoutComponent extends React.Component {
 
                 <Payment
                     methods={ checkout.getPaymentMethods() }
+                    error={ errors.getSubmitOrderError() }
+                    onChange={ (...args) => this._handlePaymentMethodChange(...args) }
                     onSubmit={ (...args) => this._handleSubmitPayment(...args) }
                 />
             </section>
@@ -89,14 +96,26 @@ export default class CheckoutComponent extends React.Component {
     }
 
     _handleUpdateShippingAddress(address) {
-        console.log(address);
+        this._checkoutService.updateShippingAddress(address);
     }
 
     _handleUpdateBillingAddress(address) {
-        console.log(address);
+        this._checkoutService.updateBillingAddress(address);
     }
 
-    _handleSubmitPayment(methodId) {
-        console.log(methodId);
+    _handleSubmitPayment(name, gateway, paymentData) {
+        const payload = {
+            payment: {
+                name,
+                gateway,
+                paymentData,
+            },
+        };
+
+        this._checkoutService.submitOrder(payload);
+    }
+
+    _handlePaymentMethodChange(name, gateway) {
+        this._checkoutService.initializePaymentMethod(name, gateway);
     }
 }

@@ -1,33 +1,8 @@
 import React from 'react';
-import { isEmpty } from 'lodash';
 import Button from 'material-ui/Button';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Radio from 'material-ui/Radio';
 import Typography from 'material-ui/Typography';
 import Address from './address-component';
-
-function ShippingOptions(props) {
-    if (!props.address || isEmpty(props.options)) {
-        return null;
-    }
-
-    return (
-        <List>
-            { props.options[props.address.id].map(option => (
-                <ListItem
-                    key={ option.id }
-                    onClick={ () => props.onOptionSelect(option.id) }
-                    button>
-                    <Radio
-                        checked={ props.selectedOptionId === option.id }
-                        disableRipple
-                    />
-                    <ListItemText primary={ option.description } />
-                </ListItem>
-            )) }
-        </List>
-    );
-}
+import ShippingOptions from './shipping-options-component';
 
 export default class ShippingComponent extends React.Component {
     constructor(props) {

@@ -69,7 +69,7 @@ class AddressComponent extends React.Component {
                 addressLine1: '',
                 addressLine2: '',
                 city: '',
-                companyName: '',
+                company: '',
                 countryCode: '',
                 firstName: '',
                 lastName: '',
@@ -135,8 +135,8 @@ class AddressComponent extends React.Component {
 
                 <TextField
                     label="Company name"
-                    value={ this.state.address.companyName || '' }
-                    onChange={ this._handleAddressChange('companyName') }
+                    value={ this.state.address.company || '' }
+                    onChange={ this._handleAddressChange('company') }
                     autoComplete="organization"
                     margin="normal"
                     className={ this.props.classes.textField }

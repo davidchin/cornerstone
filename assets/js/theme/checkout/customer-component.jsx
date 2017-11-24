@@ -48,24 +48,29 @@ class CustomerComponent extends React.Component {
                     onChange={ (...args) => this._handleEmailChange(...args) }
                     autoComplete="email"
                     margin="normal"
+                    disabled={ this.props.customer.isGuest === false }
                     className={ this.props.classes.textField }
                     required
                 />
 
-                <TextField
-                    label="Password"
-                    type="password"
-                    value={ this.state.password }
-                    onChange={ (...args) => this._handlePasswordChange(...args) }
-                    margin="normal"
-                    className={ this.props.classes.textField }
-                />
+                { this.props.customer.isGuest &&
+                    <TextField
+                        label="Password"
+                        type="password"
+                        value={this.state.password}
+                        onChange={(...args) => this._handlePasswordChange(...args)}
+                        margin="normal"
+                        className={this.props.classes.textField}
+                    />
+                }
 
-                <Button
-                    type="submit"
-                    disabled={ this.props.isSigningIn }>
-                    Sign in
-                </Button>
+                {this.props.customer.isGuest &&
+                    <Button
+                        type="submit"
+                        disabled={this.props.isSigningIn}>
+                        Sign in
+                    </Button>
+                }
 
                 { this.props.customer.isGuest === false &&
                     <Button
